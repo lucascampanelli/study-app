@@ -3,7 +3,6 @@ import constants from 'expo-constants';
 
 export default StyleSheet.create({
     body: {
-        backgroundColor: "red",
         height: "100%",
     },
 
@@ -49,8 +48,12 @@ export default StyleSheet.create({
 
     btnBack: {
         color: "#FFFFFF",
-        paddingTop: 33,
+        paddingTop: 25,
         paddingLeft: 22,
+        width: 50,
+        height: "100%",
+        zindex: 5,
+        elevation: 5,
     },
 
     questionCreateArea: {
@@ -93,7 +96,7 @@ export default StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 20,
         marginBottom: 12,
-        marginTop: 3
+        marginTop: 0
     },
 
     alternative: {
@@ -117,4 +120,95 @@ export default StyleSheet.create({
         fontWeight: "bold",
         color: "#000000",
     },
+
+    header: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 10,
+    },
+
+    questionCount: {
+        marginTop: 25,
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        fontSize: 17,
+    },
+
+    questionContainer: {
+        position: "absolute",
+        alignItems: "center",
+        width: "100%",
+        display: "flex",
+    },
+
+    trashContainer: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end"
+    },
+
+    questionHeader: {
+        position: "absolute",
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    btnTrash: {
+        color: "#ff5154",
+        paddingTop: 25,
+        paddingRight: 22,
+        width: 50
+    },
+
+    btnTrashLock: {
+        color: "#ffffff",
+        paddingTop: 25,
+        paddingRight: 22,
+        width: 50,
+        opacity: 0.5,
+    },
+
+    questionFooter: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingLeft: 50,
+        paddingRight: 50,
+        marginTop: 7
+    },
+
+    btnFinish: {
+        backgroundColor: "#f2f2f2",
+        height: 53,
+        width: 93,
+        borderRadius: 80,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+    btnFinishText: {
+        fontWeight: "bold",
+        color: "#00d4ff",
+    },
+
+    questionDirection: {
+        marginTop: 12,
+        color: "#FFFFFF",
+    },
+
+    questionDirectionLock: {
+        marginTop: 12,
+        color: "#FFFFFF",
+        opacity: 0.5,
+    },
+    
 });
