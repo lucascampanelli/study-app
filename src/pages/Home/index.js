@@ -36,18 +36,19 @@ export default function Home(){
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <LinearGradient style={styles.btnLoad} 
-                                colors={['#ff88f8', '#ff5154']}
-                                start={{x:-1,y:1}}
-	                            end={{x:1.5,y:1}}
-                                onPress={() => navigate('Create')}>
+                <TouchableOpacity onPress={() => navigate('Load')}>
+                    <LinearGradient style={styles.btnLoad} 
+                                    colors={['#ff88f8', '#ff5154']}
+                                    start={{x:-1,y:1}}
+                                    end={{x:1.5,y:1}}>
 
-                    <View style={styles.btnTextBox}>
-                        <Text style={styles.btnDescript}>Visualizar meus questionários</Text>
-                        <Text style={styles.btnTextHome}>Carregar quizzes</Text>
-                    </View>
+                        <View style={styles.btnTextBox}>
+                            <Text style={styles.btnDescript}>Visualizar meus questionários</Text>
+                            <Text style={styles.btnTextHome}>Carregar quizzes</Text>
+                        </View>
 
-                </LinearGradient>
+                    </LinearGradient>
+                </TouchableOpacity>
 
                 <LinearGradient style={styles.btnOptions} 
                                 colors={['#91a6ff', '#1f4aff']}

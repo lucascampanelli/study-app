@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './pages/Home';
 import Create from './pages/Create';
+import Load from './pages/Load';
 
 const AppStack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function Routes(){
                                               }}>
                 <AppStack.Screen name='Home' component={Home}/>
                 <AppStack.Screen name='Create' component={Create}/>
+                <AppStack.Screen name='Load' component={Load}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );

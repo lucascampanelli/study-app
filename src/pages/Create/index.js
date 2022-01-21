@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Create(){
 
@@ -22,7 +23,8 @@ export default function Create(){
     const [questionId, setQuestionId] = useState(0);
     const [questionQnt, setQuestionQnt] = useState(0);
     const [questions, setQuestions] = useState([]);
-    const [quiz, setQuiz] = useState([]);
+    const [quiz, setQuiz] = useState({});
+    const [finished, setFinished] = useState(false);
 
 
     // useEffect(() => {
@@ -33,6 +35,55 @@ export default function Create(){
         loadQuestion();
     }, [questionId]);
 
+    useEffect(() => {
+        if(finished){
+            setQuiz({
+                name: name,
+                questions: questions
+            });
+        }
+    }, [questions]);
+
+    useEffect(() => {
+        if(finished){
+            storeQuiz();
+            navigation.navigate("Home");
+        }
+    }, [quiz]);
+
+    /**
+     * Método responsável por armazenar o quiz criado na memória do sistema.
+     * @param {object} currentQuiz Objeto do quiz que será armazenado com os quizzes salvos na memória.
+     */
+    async function storeQuiz(){
+        try{
+            const currentQuizJson = quiz;
+
+            let savedQuizzes = JSON.parse(await AsyncStorage.getItem("quizzes"));
+
+            let quizzes = [];
+
+            if(savedQuizzes === null){
+                savedQuizzes = currentQuizJson;
+            }
+            else{
+                if(savedQuizzes.length >= 1){
+                    savedQuizzes.push(currentQuizJson);
+                }
+                else{
+                    quizzes.push(savedQuizzes);
+                    quizzes.push(currentQuizJson);
+
+                    savedQuizzes = quizzes;
+                }
+            }
+            
+            await AsyncStorage.setItem("quizzes", JSON.stringify(savedQuizzes));
+        }
+        catch(e){
+
+        }
+    }
 
     /**
      * Método responsável por controlar e executar a função do botão de retorno.
@@ -61,10 +112,9 @@ export default function Create(){
             }
         }
         else if(currentStep === "questions"){
-            setQuiz({
-                name: name,
-                questions: questions
-            });
+            setFinished(true);
+
+            createQuestion();            
         }
     }
 
@@ -96,6 +146,7 @@ export default function Create(){
                 setD("");
                 setE("");
                 setCorrectAnswer("");
+                setCorrectAlternative("");
             }
 
             setQuestionId(questionId + 1);
@@ -114,6 +165,7 @@ export default function Create(){
             d: d,
             e: e,
             correctAnswer: correctAnswer,
+            correctAlternative: correctAlternative,
             questionId: questionId
         }]);
     }
@@ -155,11 +207,15 @@ export default function Create(){
                     setD(question.d);
                     setE(question.e);
                     setCorrectAnswer(question.correctAnswer);
+                    setCorrectAlternative(question.correctAlternative);
                 }
             });
         }
     }
 
+    /**
+     * Método responsável por carregar a primeira questão do array de questões criadas
+     */
     function loadFirstQuestion(){
         if(questions.length > 0){
             setQuestion(questions[0].question);
@@ -169,6 +225,7 @@ export default function Create(){
             setD(questions[0].d);
             setE(questions[0].e);
             setCorrectAnswer(questions[0].correctAnswer);
+            setCorrectAlternative(questions[0].correctAlternative);
         }
     }
 
@@ -238,10 +295,12 @@ export default function Create(){
                                     <Text style={styles.labelAnswerForm}>Agora, digite as respostas e selecione a afirmação verdadeira</Text>
 
                                     <View style={styles.alternative}>
-                                        <View style={styles.alternativeCircle}>
-                                            <Text style={styles.alternativeText} onPress={() => setCorrectAnswer(a)}>A</Text>
-                                        </View>
-                                        <TextInput  style={styles.answerInput} 
+                                        <TouchableOpacity onPress={() => {setCorrectAnswer(a); setCorrectAlternative("a")}}>
+                                            <View style={ (correctAlternative === "a") ? styles.alternativeCircleCorrect : styles.alternativeCircle}>
+                                                <Text style={styles.alternativeText}>A</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TextInput  style={ (correctAlternative === "a") ? styles.answerInputCorrect : styles.answerInput} 
                                                     maxLength={150}
                                                     value={a}
                                                     multiline={true}
@@ -249,10 +308,12 @@ export default function Create(){
                                                     onPress={text => setCorrectAnswer(text)}/>
                                     </View>
                                     <View style={styles.alternative}>
-                                        <View style={styles.alternativeCircle}>
-                                            <Text style={styles.alternativeText} onPress={() => setCorrectAnswer(b)}>B</Text>
-                                        </View>
-                                        <TextInput  style={styles.answerInput} 
+                                        <TouchableOpacity onPress={() => {setCorrectAnswer(b); setCorrectAlternative("b")}}>
+                                            <View style={ (correctAlternative === "b") ? styles.alternativeCircleCorrect : styles.alternativeCircle}>
+                                                <Text style={styles.alternativeText}>B</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TextInput  style={ (correctAlternative === "b") ? styles.answerInputCorrect : styles.answerInput}
                                                     maxLength={150}
                                                     multiline={true}
                                                     value={b}
@@ -260,10 +321,12 @@ export default function Create(){
                                                     onPress={text => setCorrectAnswer(text)}/>
                                     </View>
                                     <View style={styles.alternative}>
-                                        <View style={styles.alternativeCircle}>
-                                            <Text style={styles.alternativeText} onPress={() => setCorrectAnswer(c)}>C</Text>
-                                        </View>
-                                        <TextInput  style={styles.answerInput} 
+                                        <TouchableOpacity onPress={() => {setCorrectAnswer(c); setCorrectAlternative("c")}}>
+                                            <View style={ (correctAlternative === "c") ? styles.alternativeCircleCorrect : styles.alternativeCircle}>
+                                                <Text style={styles.alternativeText}>C</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TextInput  style={ (correctAlternative === "c") ? styles.answerInputCorrect : styles.answerInput}
                                                     maxLength={150}
                                                     multiline={true}
                                                     value={c}
@@ -271,10 +334,12 @@ export default function Create(){
                                                     onPress={text => setCorrectAnswer(text)}/>
                                     </View>
                                     <View style={styles.alternative}>
-                                        <View style={styles.alternativeCircle}>
-                                            <Text style={styles.alternativeText} onPress={() => setCorrectAnswer(d)}>D</Text>
-                                        </View>
-                                        <TextInput  style={styles.answerInput} 
+                                        <TouchableOpacity onPress={() => {setCorrectAnswer(d); setCorrectAlternative("d")}}>
+                                            <View style={ (correctAlternative === "d") ? styles.alternativeCircleCorrect : styles.alternativeCircle}>
+                                                <Text style={styles.alternativeText}>D</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TextInput  style={ (correctAlternative === "d") ? styles.answerInputCorrect : styles.answerInput} 
                                                     maxLength={150}
                                                     multiline={true}
                                                     value={d}
@@ -282,10 +347,12 @@ export default function Create(){
                                                     onPress={text => setCorrectAnswer(text)}/>
                                     </View>
                                     <View style={styles.alternative}>
-                                        <View style={styles.alternativeCircle}>
-                                            <Text style={styles.alternativeText} onPress={() => setCorrectAnswer(e)}>E</Text>
-                                        </View>
-                                        <TextInput  style={styles.answerInput} 
+                                        <TouchableOpacity onPress={() => {setCorrectAnswer(e); setCorrectAlternative("e")}}>
+                                            <View style={ (correctAlternative === "e") ? styles.alternativeCircleCorrect : styles.alternativeCircle}>
+                                                <Text style={styles.alternativeText}>E</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TextInput  style={ (correctAlternative === "e") ? styles.answerInputCorrect : styles.answerInput}
                                                     maxLength={150}
                                                     multiline={true}
                                                     value={e}
@@ -302,11 +369,19 @@ export default function Create(){
                                             <Feather name="chevron-left" size={28} style={styles.questionDirection} onPress={() => questionStep("back")}/>
                                     }
                                     
-                                    <TouchableOpacity onPress={() => nextStep(step)}>
-                                        <View style={styles.btnFinish}>
-                                            <Text style={styles.btnFinishText}>CONCLUIR</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                                    {
+                                        questionQnt > 1 ?
+                                            <TouchableOpacity onPress={() => nextStep(step)}>
+                                                <View style={styles.btnFinish}>
+                                                    <Text style={styles.btnFinishText}>CONCLUIR</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        :
+                                            <View style={styles.btnFinishLock}>
+                                                <Text style={styles.btnFinishText}>CONCLUIR</Text>
+                                            </View>
+                                    }
+                                    
                                     <Feather name="chevron-right" size={28} style={styles.questionDirection} onPress={() => questionStep("next")}/>
                                 </View>
                             </View>

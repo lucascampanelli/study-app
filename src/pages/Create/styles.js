@@ -52,8 +52,6 @@ export default StyleSheet.create({
         paddingLeft: 22,
         width: 50,
         height: "100%",
-        zindex: 5,
-        elevation: 5,
     },
 
     questionCreateArea: {
@@ -86,6 +84,18 @@ export default StyleSheet.create({
         textAlign: "center",
     },
 
+    answerInputCorrect: {
+        backgroundColor: "#c1f45b",
+        width: 280,
+        height: 80,
+        color: "#000000",
+        borderRadius: 10,
+        marginBottom: 12,
+        fontSize: 15,
+        padding: 12,
+        textAlign: "center",
+    },
+
     labelQuestionForm: {
         color: "#FFFFFF",
         fontSize: 20,
@@ -107,6 +117,17 @@ export default StyleSheet.create({
 
     alternativeCircle: {
         backgroundColor: "#f2f2f2",
+        borderRadius: 50,
+        marginRight: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 40,
+        width: 40,
+    },
+
+    alternativeCircleCorrect: {
+        backgroundColor: "#c1f45b",
         borderRadius: 50,
         marginRight: 10,
         display: "flex",
@@ -146,7 +167,6 @@ export default StyleSheet.create({
     trashContainer: {
         position: "absolute",
         width: "100%",
-        height: "100%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -165,7 +185,7 @@ export default StyleSheet.create({
         color: "#ff5154",
         paddingTop: 25,
         paddingRight: 22,
-        width: 50
+        width: 50,
     },
 
     btnTrashLock: {
@@ -189,6 +209,17 @@ export default StyleSheet.create({
         backgroundColor: "#f2f2f2",
         height: 53,
         width: 93,
+        borderRadius: 80,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+    btnFinishLock: {
+        backgroundColor: "#f2f2f2",
+        height: 53,
+        width: 93,
+        opacity: 0.5,
         borderRadius: 80,
         display: "flex",
         alignItems: "center",
