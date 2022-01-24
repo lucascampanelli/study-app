@@ -1,5 +1,5 @@
-import React, { useState, useRef, Fragment, useEffect } from 'react';
-import { TouchableOpacity, FlatList, StyleSheet, Text, View, Button, Image, TextInput, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, FlatList, Text, View, Modal } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
@@ -86,13 +86,6 @@ export default function Load(){
         }
     }
 
-
-    const cards = ({quiz}) => (
-        <View>
-            <Text>{quiz.name}</Text>
-        </View>
-    );
-
     async function loadQuizzes(){
         try{
             const storedQuizzes = JSON.parse(await AsyncStorage.getItem("quizzes"));
@@ -109,6 +102,11 @@ export default function Load(){
         catch(e){
 
         }
+    }
+
+    function playQuiz(){
+        setShowOptions(false);
+        navigation.navigate("Game", quizSelected);
     }
 
     function displayQuizzes({item}){
@@ -156,7 +154,7 @@ export default function Load(){
                                 </View>
                             </View>
                             <View style={styles.modalBody}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => playQuiz()}>
                                     <View style={styles.playBtn}>
                                         <Text style={styles.playText}>JOGAR</Text>
                                     </View>
@@ -184,6 +182,7 @@ export default function Load(){
                         quizzes.length > 0 ?
                             <FlatList   data={quizzes}
                                         renderItem={displayQuizzes}
+                                        keyExtractor={item => item.name}
                                         style={styles.quizList}/>
                         :
                             <Text>Você ainda não criou nenhum quiz :(</Text>

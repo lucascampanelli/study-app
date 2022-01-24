@@ -1,5 +1,4 @@
 import { StyleSheet, View } from 'react-native';
-import constants from 'expo-constants';
 
 export default StyleSheet.create({
     body: {
