@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Create from './pages/Create';
 import Load from './pages/Load';
 import Game from './pages/Game';
+import Edit from './pages/Edit';
 
 const AppStack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function Routes(){
                 <AppStack.Screen name='Create' component={Create}/>
                 <AppStack.Screen name='Load' component={Load}/>
                 <AppStack.Screen name='Game' component={Game}/>
+                <AppStack.Screen name='Edit' component={Edit}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );

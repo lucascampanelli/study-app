@@ -109,6 +109,11 @@ export default function Load(){
         navigation.navigate("Game", quizSelected);
     }
 
+    function editQuiz(){
+        setShowOptions(false);
+        navigation.navigate("Edit", quizSelected);
+    }
+
     function displayQuizzes({item}){
         return (
             <TouchableOpacity onPress={() => {setShowOptions(true); setQuizSelected(item)}}>
@@ -160,7 +165,7 @@ export default function Load(){
                                     </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => editQuiz()}>
                                     <View style={styles.editBtn}>
                                         <Text style={styles.editText}>EDITAR</Text>
                                     </View>

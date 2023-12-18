@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default StyleSheet.create({
     body: {
-        height: "100%",
+        width: "100%",
+        height: "100%"
     },
 
     formArea: {
@@ -51,94 +52,6 @@ export default StyleSheet.create({
         paddingLeft: 22,
         width: 50,
         height: "100%",
-    },
-
-    questionCreateArea: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-    questionInput: {
-        backgroundColor: "#f2f2f2",
-        width: 280,
-        height: 80,
-        color: "#00d4ff",
-        borderRadius: 10,
-        marginBottom: 12,
-        fontSize: 15,
-        padding: 12,
-        textAlign: "center",
-    },
-
-    answerInput: {
-        backgroundColor: "#f2f2f2",
-        width: 280,
-        height: 80,
-        color: "#00d4ff",
-        borderRadius: 10,
-        marginBottom: 12,
-        fontSize: 15,
-        padding: 12,
-        textAlign: "center",
-    },
-
-    answerInputCorrect: {
-        backgroundColor: "#c1f45b",
-        width: 280,
-        height: 80,
-        color: "#000000",
-        borderRadius: 10,
-        marginBottom: 12,
-        fontSize: 15,
-        padding: 12,
-        textAlign: "center",
-    },
-
-    labelQuestionForm: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        marginBottom: 12,
-    },
-
-    labelAnswerForm: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        marginBottom: 12,
-        marginTop: 0
-    },
-
-    alternative: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-    },
-
-    alternativeCircle: {
-        backgroundColor: "#f2f2f2",
-        borderRadius: 50,
-        marginRight: 10,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: 40,
-        width: 40,
-    },
-
-    alternativeCircleCorrect: {
-        backgroundColor: "#c1f45b",
-        borderRadius: 50,
-        marginRight: 10,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: 40,
-        width: 40,
-    },
-
-    alternativeText: {
-        fontWeight: "bold",
-        color: "#000000",
     },
 
     header: {
@@ -240,5 +153,92 @@ export default StyleSheet.create({
         color: "#FFFFFF",
         opacity: 0.5,
     },
-    
+
+    questionCreateArea: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+    questionInput: {
+        backgroundColor: "#f2f2f2",
+        width: 280,
+        height: 80,
+        color: "#00d4ff",
+        borderRadius: 10,
+        marginBottom: 12,
+        fontSize: 15,
+        padding: 12,
+        textAlign: "center",
+    },
+
+    answerInput: {
+        backgroundColor: "#f2f2f2",
+        width: 280,
+        height: 80,
+        color: "#00d4ff",
+        borderRadius: 10,
+        marginBottom: 12,
+        fontSize: 15,
+        padding: 12,
+        textAlign: "center",
+    },
+
+    answerInputCorrect: {
+        backgroundColor: "#c1f45b",
+        width: 280,
+        height: 80,
+        color: "#000000",
+        borderRadius: 10,
+        marginBottom: 12,
+        fontSize: 15,
+        padding: 12,
+        textAlign: "center",
+    },
+
+    labelQuestionForm: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        marginBottom: 12,
+    },
+
+    labelAnswerForm: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        marginBottom: 12,
+        marginTop: 0
+    },
+
+    alternative: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    alternativeCircle: {
+        backgroundColor: "#f2f2f2",
+        borderRadius: 50,
+        marginRight: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 40,
+        width: 40,
+    },
+
+    alternativeCircleCorrect: {
+        backgroundColor: "#c1f45b",
+        borderRadius: 50,
+        marginRight: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 40,
+        width: 40,
+    },
+
+    alternativeText: {
+        fontWeight: "bold",
+        color: "#000000",
+    },
 });
